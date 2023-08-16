@@ -10,10 +10,12 @@ namespace Traversal.Controllers
     public class UserController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
 
-		public UserController(UserManager<AppUser> userManager)
+		public UserController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager)
 		{
 			_userManager = userManager;
+            _signInManager = signInManager;
 		}
 
 		[HttpGet]
@@ -37,7 +39,7 @@ namespace Traversal.Controllers
                 var result = await _userManager.CreateAsync(appUser, p.Password);
                 if(result.Succeeded)
                 {
-                    return RedirectToAction("Signin");
+                    return RedirectToAction("Signin","User");
                 }
                 else
                 {
@@ -52,6 +54,23 @@ namespace Traversal.Controllers
         [HttpGet]
         public IActionResult Signin()
         {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Signin(UserSignInVM p)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(p.username, p.password, false, true);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Profile", new {area="Member"});
+                }
+                else
+                {
+                    return RedirectToAction("Signin", "User");
+                }
+            }
             return View();
         }
     }
