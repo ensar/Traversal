@@ -21,6 +21,7 @@ builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<Context
 builder.Services.ContainerDependencies();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.CustomerValidator();
+builder.Services.AddHttpClient();
 
 builder.Services.AddControllersWithViews().AddFluentValidation();
 

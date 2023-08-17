@@ -42,7 +42,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Logs\" />
     <Folder Include="wwwroot\pdfreports\" />
     <Folder Include="wwwroot\simple-404-template\assets\images\" />
