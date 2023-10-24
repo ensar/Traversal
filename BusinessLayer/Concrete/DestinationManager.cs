@@ -18,6 +18,11 @@ namespace BusinessLayer.Concrete
             _destinationDal = destinationDal;
         }
 
+        public Destination GetDestinationWithGuide(int id)
+        {
+            return _destinationDal.GetDestinationWithGuide(id);
+        }
+
         public void TAdd(Destination t)
         {
             _destinationDal.Insert(t);
@@ -33,6 +38,10 @@ namespace BusinessLayer.Concrete
             return _destinationDal.GetById(id);
         }
 
+        public List<Destination> TGetLast4Destinations()
+        {
+            return _destinationDal.GetLast4Destinations();
+        }
 
         public List<Destination> TGetList()
         {

@@ -14,8 +14,8 @@ namespace Traversal.ViewComponents.MemberDashboard
 
         public IViewComponentResult Invoke()
         {
-            //var values = _destinationService.TGetLast4Destinations();
-            return View();
+            var values = _destinationService.TGetLast4Destinations();
+            return View(values);
         }
     }
 }
